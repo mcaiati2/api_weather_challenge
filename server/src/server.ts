@@ -1,8 +1,8 @@
-// import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 import express from 'express';
 // import path from 'path';
 // import { fileURLToPath } from 'url';
-// dotenv.config();
+dotenv.config();
 import routes from './routes/index.js';
 
 // const __filename = fileURLToPath(import.meta.url);
