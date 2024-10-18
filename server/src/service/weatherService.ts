@@ -1,11 +1,10 @@
-// import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 // Import axios to make our http requests to the OpenWeatherMap API
 import axios from 'axios';
 // Allow us to pull variables from .env file with process.env
-// dotenv.config();
+dotenv.config();
 
 import dayjs from 'dayjs';
-console.log(process.env.API_BASE_URL)
 
 // COMPLETED Complete the WeatherService class
 class WeatherService {
