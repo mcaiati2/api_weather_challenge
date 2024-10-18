@@ -61,7 +61,6 @@ class HistoryService {
   async getCities() {
     // Get the array of cites, using the read method
     const cityArray = await this.read();
-
     return cityArray;
   }
 
@@ -91,7 +90,13 @@ class HistoryService {
   }
 
   // * BONUS TODO: Define a removeCity method that removes a city from the db.json file
-  // async removeCity(id: string) {
+  async removeCity(id: string) {
+    const citiesArray = await this.getCities();
+
+    const filterCity = citiesArray.filter((city: City) => city.id !== id);
+
+    await this.write(filterCity);
+    console.log(`city with an id ${id} has been deleted`);
   //   // Get the cities array
   //   const citiesArray = await this.getCities();
 
@@ -100,6 +105,7 @@ class HistoryService {
   //   // Use the write method to overwrite the searchHistory.json file
   //   // console.log a confirmation that the city has been removed
   // }
+}
 }
 
 export default new HistoryService();

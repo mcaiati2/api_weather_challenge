@@ -47,7 +47,16 @@ router.get('/history', async (_req: Request, res: Response) => {
   }
 });
 
-// * BONUS TODO: DELETE city from search history
+router.delete('/history/:id', async (req: Request, res: Response) => {
+  try {
+    const cityId = req.params.id;
+    await historyService.removeCity(cityId);
+    res.status(200).json({ message: 'City removed from search history' });
+  } catch (error) {
+    console.error('Error removing city from search history:', error); // Log the error
+    res.status(500).json({ error: 'Failed to remove city from search history' });
+  }
+});// * BONUS TODO: DELETE city from search history
 // router.delete('/history/:id', async (req: Request, res: Response) => {
 //   // Use the historyService.removeCity() to remove a city by id 
 //   // You can use req.params.id to get the id of the city the user wants to remove
