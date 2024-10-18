@@ -48,8 +48,9 @@ const fetchWeather = async (cityName: string) => {
   console.log('weatherData: ', weatherData);
 
   renderCurrentWeather(weatherData[0]);
-  renderForecast(weatherData.slice(1));
+  renderForecast(weatherData[1]);
 };
+
 
 const fetchSearchHistory = async () => {
   const history = await fetch('/api/weather/history', {
@@ -119,7 +120,7 @@ const renderForecast = (forecast: any): void => {
 
 const renderForecastCard = (forecast: any) => {
   const { date, icon, iconDescription, tempF, windSpeed, humidity } = forecast;
-
+  console.log('card',forecast);
   const { col, cardTitle, weatherIcon, tempEl, windEl, humidityEl } =
     createForecastCard();
 

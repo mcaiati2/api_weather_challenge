@@ -16,6 +16,7 @@ router.post('/', async (req: Request, res: Response) => {
     // Create a variable forecastData that stores the forecast data, using the weatherService.getForecastWeatherForCity()
     const forecastData = await weatherService.getForecastWeatherForCity(req.body.cityName);
     console.log('Forecast weather data:', forecastData); // Log the forecast weather data
+    console.log('forecast data', forecastData);
 
     // Create a variable weatherData that stores an array of the currentData as the first item and forecastData as the second item
     const weatherData = [currentData, forecastData];

@@ -37,16 +37,27 @@ class WeatherService {
     console.log(res.data);
 
     // return the array of of 40 weather objects
-
+const filtered = res.data.list.filter((weatherObj: { dt_txt: string }) => {
+  if (weatherObj.dt_txt.includes('12:00')) {
+    return weatherObj;
+  }
+  return false;
+});
     // BONUS: filter the array of 40 objects down to just objects that have a dt_txt that includes '12:00'
     // callback function will get called 40 times for every weatherObject in the array
-    return res.data.list.filter((weatherObj: { dt_txt: string }) => {
-      if (weatherObj.dt_txt.includes('12:00')) {
-        return weatherObj;
-      }
-      return false;
+    const weatherData = filtered.map((weatherObj: any) => {
+      return {
+        city: city, // this is completed for you as an example
+        date: dayjs(weatherObj.dt * 1000).format('MM/DD/YYYY'), // Use the already installed dayjs package to convert res.data.dt * 1000 into a formatted date like '10/17/2024'
+        icon: weatherObj.weather[0].icon,
+        iconDescription: weatherObj.weather[0].description,
+        tempF: weatherObj.main.temp,
+        windSpeed: weatherObj.wind.speed,
+        humidity: weatherObj.main.humidity,
+      };
     });
-
+    return weatherData;
+    
   }
 
   // COMPLETED Complete getCurrentWeatherForCity method
